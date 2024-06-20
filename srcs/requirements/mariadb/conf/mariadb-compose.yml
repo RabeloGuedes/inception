@@ -1,0 +1,7 @@
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    restart: on-failure
+    volumes:
+      - mariadb:/var/www/wordpress
