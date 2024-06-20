@@ -1,8 +1,13 @@
 up:
-	docker compose -f ./srcs/docker-compose.yml up -d
+	mkdir -p /home/arabelo-/data && mkdir -p /home/arabelo-/data/mariadb && mkdir -p /home/arabelo-/data/wordpress
+	docker compose -f ./srcs/docker-compose.yml \
+	-f ./srcs/requirements/mariadb/conf/mariadb-compose.yml \
+	up -d
 
 down:
-	docker compose -f ./srcs/docker-compose.yml down
+	docker compose -f ./srcs/docker-compose.yml \
+	-f ./srcs/requirements/mariadb/conf/mariadb-compose.yml \
+	down
 
 clean: down
 	if [ $$(docker volume ls -q | wl -l) -eq 0 ]; then docker volume rm  $$(docker volume ls -q); fi
@@ -13,6 +18,7 @@ fclean:	clean
 
 prune: fclean
 	docker system prune -fa
+	rm -rf /home/arabelo-/data/mariadb /home/arabelo-/data/wordpress
 
 re: prune up
 
