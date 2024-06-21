@@ -8,4 +8,4 @@ COPY ./conf/db-conf.sh /
 
 RUN chmod +x /db-conf.sh
 
-ENTRYPOINT [".db-conf.sh"]
+ENTRYPOINT ["./db-conf.sh"]

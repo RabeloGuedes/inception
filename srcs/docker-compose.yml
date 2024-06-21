@@ -1,9 +1,7 @@
-version: '1.0'
-
 volumes:
   mariadb:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/data/mariadb
+      device: /home/arabelo/data/mariadb

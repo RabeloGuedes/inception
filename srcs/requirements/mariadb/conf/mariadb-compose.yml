@@ -5,3 +5,5 @@ services:
     restart: on-failure
     volumes:
       - mariadb:/var/www/wordpress
+    env_file:
+      - ./requirements/mariadb/conf/.mariadb.env
