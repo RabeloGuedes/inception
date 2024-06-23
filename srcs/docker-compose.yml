@@ -1,3 +1,33 @@
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    restart: on-failure
+    volumes:
+      - mariadb:/var/www/wordpress
+    env_file:
+      - ./requirements/mariadb/conf/.mariadb.env
+  nginx:
+    container_name: nginx
+    ports:
+      - "443:443"
+    build: ./requirements/nginx
+    restart: on-failure
+    volumes:
+      - wordpress:/var/www/wordpress
+    depends_on:
+      - wordpress
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: on-failure
+    volumes:
+      - wordpress:/var/www/wordpress
+    depends_on: 
+      - mariadb
+    env_file:
+      ./requirements/wordpress/conf/.wordpress.env
+
 volumes:
   mariadb:
     driver: local
@@ -5,3 +35,9 @@ volumes:
       o: bind
       type: none
       device: /home/arabelo/data/mariadb
+  wordpress:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/arabelo/data/wordpress
