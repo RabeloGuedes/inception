@@ -4,7 +4,7 @@ services:
     build: ./requirements/mariadb/
     restart: on-failure
     volumes:
-      - mariadb:/var/www/wordpress
+      - mariadb:/var/lib/mysql
     env_file:
       - ./requirements/mariadb/conf/.mariadb.env
     networks:
