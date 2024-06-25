@@ -24,8 +24,6 @@ done
 
 echo "Database connections established."
 
-
-
 if [ ! -f /var/www/wordpress/wp-config.php ]; then
     echo "Installing WordPress..."
     wp core download --allow-root
