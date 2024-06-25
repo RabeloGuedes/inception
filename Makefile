@@ -1,5 +1,5 @@
 up:
-	mkdir -p /home/arabelo/data && mkdir -p /home/arabelo/data/mariadb && mkdir -p /home/arabelo/data/wordpress
+	mkdir -p $$HOME/data && mkdir -p $$HOME/data/mariadb && mkdir -p $$HOME/data/wordpress
 	docker compose -f ./srcs/docker-compose.yml up -d
 
 down:
@@ -14,7 +14,7 @@ fclean:	clean
 
 prune: fclean
 	docker system prune -fa
-	rm -rf /home/arabelo/data/mariadb /home/arabelo/data/wordpress
+	rm -rf $$HOME/data/mariadb $$HOME/data/wordpress
 
 re: prune up
 

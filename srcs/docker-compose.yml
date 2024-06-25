@@ -7,6 +7,8 @@ services:
       - mariadb:/var/www/wordpress
     env_file:
       - ./requirements/mariadb/conf/.mariadb.env
+    networks:
+      - inception
   nginx:
     container_name: nginx
     ports:
@@ -17,6 +19,8 @@ services:
       - wordpress:/var/www/wordpress
     depends_on:
       - wordpress
+    networks:
+      - inception
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
@@ -27,6 +31,8 @@ services:
       - mariadb
     env_file:
       ./requirements/wordpress/conf/.wordpress.env
+    networks:
+      - inception
 
 volumes:
   mariadb:
@@ -34,10 +40,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/arabelo/data/mariadb
+      device: ${HOME}/data/mariadb
   wordpress:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/arabelo/data/wordpress
+      device: ${HOME}/data/wordpress
+networks:
+  inception:
+    name: inception

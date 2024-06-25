@@ -10,6 +10,6 @@ COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /var/www/wordpress && chown -R www-data:www-data /var/www/wordpress
 
-CMD ["-g", "daemon off;"]
+CMD [ "-g", "daemon off;" ]
 
-ENTRYPOINT ["nginx"]
+ENTRYPOINT [ "nginx" ]
